@@ -13,12 +13,12 @@ class CLIPDataset(Dataset):
         self.df=pd.read_csv(csv_path)
         self.tokenizer=tokenizer
         self.max_seq_len=max_seq_len
-        self.transform=transforms.Compose[
+        self.transform=transforms.Compose([
             transforms.Resize((224,224)),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                  std=[0.229, 0.224, 0.225])
-        ]
+        ])
 
     def __len__(self):
         return len(self.df)
@@ -49,7 +49,7 @@ dataset=CLIPDataset("data.csv",tokenizer)
 loader=DataLoader(dataset,batch_size=BATCH_SIZE,shuffle=True)
 
 model=CLIP(embed_dim=EMBED_DIM,projection_dim=PROJECTION_DIM).to(DEVICE)
-model=torch.compile()
+model=torch.compile(model)
 optimizer=torch.optim.AdamW(model.parameters(),lr=LR)
 loss_fn=CLIPLoss()
 

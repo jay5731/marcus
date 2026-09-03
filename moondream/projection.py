@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-class ProjectionLayer(nn.Module):
+class ProjectionHead(nn.Module):
     def __init__(self,in_dim,hidden_size,out_dim):
         super().__init__()
         self.projection=nn.Sequential(

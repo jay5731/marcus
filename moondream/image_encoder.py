@@ -27,7 +27,7 @@ class ImageEncoder(nn.Module):
             dim_feedforward=embed_dim*4,
             dropout=dropout,batch_first=True
         )
-        self.transformer=nn.Transformer(encoder_layer,num_layers=num_layers)
+        self.transformer=nn.TransformerEncoder(encoder_layer,num_layers=num_layers)
         self.norm=nn.LayerNorm(embed_dim)
 
     def forward(self,x):

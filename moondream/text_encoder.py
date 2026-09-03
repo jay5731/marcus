@@ -5,11 +5,11 @@ class TextEncoder(nn.Module):
         super().__init__()
         self.token_embedding=nn.Embedding(vocab_size,embed_dim)
         self.cls_token=nn.Parameter(torch.randn(1,1,embed_dim))
-        self.pos_embedding=nn.Parameter(torch.randn(1,max_seq_len,embed_dim))
+        self.pos_embedding=nn.Parameter(torch.randn(1,max_seq_len+1,embed_dim))
         self.dropout=nn.Dropout(dropout)
 
         encoder_layer=nn.TransformerEncoderLayer(
-            d_head=embed_dim,n_heads=num_heads,
+            d_model=embed_dim,nhead=num_heads,
             dim_feedforward=embed_dim*4,
             dropout=dropout,batch_first=True
         )
