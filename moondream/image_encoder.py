@@ -23,7 +23,7 @@ class ImageEncoder(nn.Module):
         self.dropout = nn.Dropout(dropout)
 
         encoder_layer=nn.TransformerEncoderLayer(
-            d_model=embed_dim,n_head=num_heads,
+            d_model=embed_dim,nhead=num_heads,
             dim_feedforward=embed_dim*4,
             dropout=dropout,batch_first=True
         )
